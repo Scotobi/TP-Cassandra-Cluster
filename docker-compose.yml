@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  cass1:
+    image: cassandra:4.1
+    container_name: cass1
+    hostname: cass1
+    networks:
+      - cass-net
+    ports:
+      - "9042:9042"
+    environment:
+      CASSANDRA_CLUSTER_NAME: tp2-cluster
+      CASSANDRA_SEEDS: cass1
+      CASSANDRA_DC: dc1
+      CASSANDRA_RACK: rack1
+      CASSANDRA_ENDPOINT_SNITCH: GossipingPropertyFileSnitch
+      CASSANDRA_NUM_TOKENS: 16
+      MAX_HEAP_SIZE: 512M
+      HEAP_NEWSIZE: 128M
+    volumes:
+      - cass1_data:/var/lib/cassandra
+
+  cass2:
+    image: cassandra:4.1
+    container_name: cass2
+    hostname: cass2
+    networks:
+      - cass-net
+    environment:
+      CASSANDRA_CLUSTER_NAME: tp2-cluster
+      CASSANDRA_SEEDS: cass1
+      CASSANDRA_DC: dc1
+      CASSANDRA_RACK: rack2
+      CASSANDRA_ENDPOINT_SNITCH: GossipingPropertyFileSnitch
+      CASSANDRA_NUM_TOKENS: 16
+      MAX_HEAP_SIZE: 512M
+      HEAP_NEWSIZE: 128M
+    volumes:
+      - cass2_data:/var/lib/cassandra
+
+  cass3:
+    image: cassandra:4.1
+    container_name: cass3
+    hostname: cass3
+    networks:
+      - cass-net
+    environment:
+      CASSANDRA_CLUSTER_NAME: tp2-cluster
+      CASSANDRA_SEEDS: cass1
+      CASSANDRA_DC: dc1
+      CASSANDRA_RACK: rack3
+      CASSANDRA_ENDPOINT_SNITCH: GossipingPropertyFileSnitch
+      CASSANDRA_NUM_TOKENS: 16
+      MAX_HEAP_SIZE: 512M
+      HEAP_NEWSIZE: 128M
+    volumes:
+      - cass3_data:/var/lib/cassandra
+
+networks:
+  cass-net:
+    name: cass-net
+
+volumes:
+  cass1_data:
+  cass2_data:
+  cass3_data:

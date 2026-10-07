@@ -1,0 +1,123 @@
+﻿### CONSISTENCY ONE (TRACING ON)
+Consistency level set to ONE.
+Now Tracing is enabled
+
+ station_id | bornes_disponibles | capacite | derniere_mise_a_jour            | nom_station         | vatiques_disponibles
+------------+--------------------+----------+---------------------------------+---------------------+----------------------
+      15047 |                 51 |       52 | 2026-10-07 08:26:46.000000+0000 | Morillons - Dantzig |                    1
+
+(1 rows)
+
+Tracing session: 8cf81290-c231-11f1-a663-b39af1246204
+
+ activity                                                                                                   | timestamp                  | source     | source_elapsed | client
+------------------------------------------------------------------------------------------------------------+----------------------------+------------+----------------+-----------
+                                                                                         Execute CQL3 query | 2026-10-07 09:29:09.949000 | 172.18.0.2 |              0 | 127.0.0.1
+ Parsing SELECT * FROM velib_cluster.stations_velib WHERE station_id='15047'; [Native-Transport-Requests-2] | 2026-10-07 09:29:09.954000 | 172.18.0.2 |           6274 | 127.0.0.1
+                                                          Preparing statement [Native-Transport-Requests-2] | 2026-10-07 09:29:09.955000 | 172.18.0.2 |           7237 | 127.0.0.1
+                                           Executing single-partition query on stations_velib [ReadStage-3] | 2026-10-07 09:29:09.956000 | 172.18.0.2 |           8364 | 127.0.0.1
+                                                                 Acquiring sstable references [ReadStage-3] | 2026-10-07 09:29:09.957000 | 172.18.0.2 |           8567 | 127.0.0.1
+                                                                    Merging memtable contents [ReadStage-3] | 2026-10-07 09:29:09.957001 | 172.18.0.2 |           8688 | 127.0.0.1
+                                                                  Key cache hit for sstable 1 [ReadStage-3] | 2026-10-07 09:29:09.957002 | 172.18.0.2 |           9031 | 127.0.0.1
+                                                       Read 1 live rows and 0 tombstone cells [ReadStage-3] | 2026-10-07 09:29:09.958000 | 172.18.0.2 |           9975 | 127.0.0.1
+                                                                                           Request complete | 2026-10-07 09:29:09.961394 | 172.18.0.2 |          12394 | 127.0.0.1
+
+
+### CONSISTENCY QUORUM (TRACING ON)
+Consistency level set to QUORUM.
+Now Tracing is enabled
+
+ station_id | bornes_disponibles | capacite | derniere_mise_a_jour            | nom_station         | vatiques_disponibles
+------------+--------------------+----------+---------------------------------+---------------------+----------------------
+      15047 |                 51 |       52 | 2026-10-07 08:26:46.000000+0000 | Morillons - Dantzig |                    1
+
+(1 rows)
+
+Tracing session: 8ec112c0-c231-11f1-a663-b39af1246204
+
+ activity                                                                                                                  | timestamp                  | source     | source_elapsed | client
+---------------------------------------------------------------------------------------------------------------------------+----------------------------+------------+----------------+-----------
+                                                                                                        Execute CQL3 query | 2026-10-07 09:29:12.940000 | 172.18.0.2 |              0 | 127.0.0.1
+                Parsing SELECT * FROM velib_cluster.stations_velib WHERE station_id='15047'; [Native-Transport-Requests-1] | 2026-10-07 09:29:12.940001 | 172.18.0.2 |            369 | 127.0.0.1
+                                                                         Preparing statement [Native-Transport-Requests-1] | 2026-10-07 09:29:12.940002 | 172.18.0.2 |            735 | 127.0.0.1
+                                                        reading digest from /172.18.0.3:7000 [Native-Transport-Requests-1] | 2026-10-07 09:29:12.941000 | 172.18.0.2 |           1465 | 127.0.0.1
+                                                          Executing single-partition query on stations_velib [ReadStage-2] | 2026-10-07 09:29:12.941001 | 172.18.0.2 |           1505 | 127.0.0.1
+                                                                                Acquiring sstable references [ReadStage-2] | 2026-10-07 09:29:12.941002 | 172.18.0.2 |           1655 | 127.0.0.1
+                                                                                   Merging memtable contents [ReadStage-2] | 2026-10-07 09:29:12.941003 | 172.18.0.2 |           1749 | 127.0.0.1
+                                                                                 Key cache hit for sstable 1 [ReadStage-2] | 2026-10-07 09:29:12.942000 | 172.18.0.2 |           1950 | 127.0.0.1
+                             Sending READ_REQ message to /172.18.0.3:7000 message size 160 bytes [Messaging-EventLoop-3-2] | 2026-10-07 09:29:12.942001 | 172.18.0.2 |           2224 | 127.0.0.1
+                                                                      Read 1 live rows and 0 tombstone cells [ReadStage-2] | 2026-10-07 09:29:12.942002 | 172.18.0.2 |           2340 | 127.0.0.1
+                                                 READ_REQ message received from /172.18.0.2:7000 [Messaging-EventLoop-3-5] | 2026-10-07 09:29:12.949000 | 172.18.0.3 |           1348 | 127.0.0.1
+ speculating read retry on Full(/172.18.0.4:7000,(9051038697231495497,-8800403007517656868]) [Native-Transport-Requests-1] | 2026-10-07 09:29:12.949000 | 172.18.0.2 |           8815 | 127.0.0.1
+                             Sending READ_REQ message to /172.18.0.4:7000 message size 160 bytes [Messaging-EventLoop-3-1] | 2026-10-07 09:29:12.950000 | 172.18.0.2 |           9958 | 127.0.0.1
+                                                 READ_REQ message received from /172.18.0.2:7000 [Messaging-EventLoop-3-1] | 2026-10-07 09:29:12.958000 | 172.18.0.4 |           1629 | 127.0.0.1
+                                                          Executing single-partition query on stations_velib [ReadStage-1] | 2026-10-07 09:29:12.958000 | 172.18.0.3 |          11313 | 127.0.0.1
+                                                                                Acquiring sstable references [ReadStage-1] | 2026-10-07 09:29:12.959000 | 172.18.0.3 |          11923 | 127.0.0.1
+                                                                                   Merging memtable contents [ReadStage-1] | 2026-10-07 09:29:12.959001 | 172.18.0.3 |          12141 | 127.0.0.1
+                                                                                 Key cache hit for sstable 1 [ReadStage-1] | 2026-10-07 09:29:12.960000 | 172.18.0.3 |          12788 | 127.0.0.1
+                                                                      Read 1 live rows and 0 tombstone cells [ReadStage-1] | 2026-10-07 09:29:12.961000 | 172.18.0.3 |          14014 | 127.0.0.1
+                                                                      Enqueuing response to /172.18.0.2:7000 [ReadStage-1] | 2026-10-07 09:29:12.961001 | 172.18.0.3 |          14270 | 127.0.0.1
+                         Sending READ_RSP message to cass1/172.18.0.2:7000 message size 50 bytes [Messaging-EventLoop-3-1] | 2026-10-07 09:29:12.962000 | 172.18.0.3 |          15285 | 127.0.0.1
+                                                 READ_RSP message received from /172.18.0.3:7000 [Messaging-EventLoop-3-5] | 2026-10-07 09:29:12.963000 | 172.18.0.2 |          23487 | 127.0.0.1
+                                                        Processing response from /172.18.0.3:7000 [RequestResponseStage-2] | 2026-10-07 09:29:12.964000 | 172.18.0.2 |          23861 | 127.0.0.1
+                                                          Executing single-partition query on stations_velib [ReadStage-2] | 2026-10-07 09:29:12.972000 | 172.18.0.4 |          15331 | 127.0.0.1
+                                                                                Acquiring sstable references [ReadStage-2] | 2026-10-07 09:29:12.972001 | 172.18.0.4 |          15854 | 127.0.0.1
+                                                                                   Merging memtable contents [ReadStage-2] | 2026-10-07 09:29:12.972002 | 172.18.0.4 |          16084 | 127.0.0.1
+                                                                                 Key cache hit for sstable 1 [ReadStage-2] | 2026-10-07 09:29:12.973000 | 172.18.0.4 |          16787 | 127.0.0.1
+                                                                      Read 1 live rows and 0 tombstone cells [ReadStage-2] | 2026-10-07 09:29:12.975000 | 172.18.0.4 |          18841 | 127.0.0.1
+                                                                      Enqueuing response to /172.18.0.2:7000 [ReadStage-2] | 2026-10-07 09:29:12.982000 | 172.18.0.4 |          25864 | 127.0.0.1
+                         Sending READ_RSP message to cass1/172.18.0.2:7000 message size 50 bytes [Messaging-EventLoop-3-1] | 2026-10-07 09:29:12.986000 | 172.18.0.4 |          29770 | 127.0.0.1
+                                                 READ_RSP message received from /172.18.0.4:7000 [Messaging-EventLoop-3-4] | 2026-10-07 09:29:12.988000 | 172.18.0.2 |             96 | 127.0.0.1
+                                                        Processing response from /172.18.0.4:7000 [RequestResponseStage-2] | 2026-10-07 09:29:12.988001 | 172.18.0.2 |            696 | 127.0.0.1
+                                                                                                          Request complete | 2026-10-07 09:29:12.965627 | 172.18.0.2 |          25627 | 127.0.0.1
+
+
+### CONSISTENCY ALL (TRACING ON)
+Consistency level set to ALL.
+Now Tracing is enabled
+
+ station_id | bornes_disponibles | capacite | derniere_mise_a_jour            | nom_station         | vatiques_disponibles
+------------+--------------------+----------+---------------------------------+---------------------+----------------------
+      15047 |                 51 |       52 | 2026-10-07 08:26:46.000000+0000 | Morillons - Dantzig |                    1
+
+(1 rows)
+
+Tracing session: 907ccc80-c231-11f1-a663-b39af1246204
+
+ activity                                                                                                   | timestamp                  | source     | source_elapsed | client
+------------------------------------------------------------------------------------------------------------+----------------------------+------------+----------------+-----------
+                                                                                         Execute CQL3 query | 2026-10-07 09:29:15.848000 | 172.18.0.2 |              0 | 127.0.0.1
+ Parsing SELECT * FROM velib_cluster.stations_velib WHERE station_id='15047'; [Native-Transport-Requests-2] | 2026-10-07 09:29:15.849000 | 172.18.0.2 |            544 | 127.0.0.1
+                                                          Preparing statement [Native-Transport-Requests-2] | 2026-10-07 09:29:15.849001 | 172.18.0.2 |           1013 | 127.0.0.1
+                                         reading digest from /172.18.0.3:7000 [Native-Transport-Requests-2] | 2026-10-07 09:29:15.851000 | 172.18.0.2 |           2370 | 127.0.0.1
+                                           Executing single-partition query on stations_velib [ReadStage-1] | 2026-10-07 09:29:15.851001 | 172.18.0.2 |           2395 | 127.0.0.1
+                                                                 Acquiring sstable references [ReadStage-1] | 2026-10-07 09:29:15.851002 | 172.18.0.2 |           2529 | 127.0.0.1
+                                                                    Merging memtable contents [ReadStage-1] | 2026-10-07 09:29:15.851003 | 172.18.0.2 |           2644 | 127.0.0.1
+                                         reading digest from /172.18.0.4:7000 [Native-Transport-Requests-2] | 2026-10-07 09:29:15.851004 | 172.18.0.2 |           2762 | 127.0.0.1
+                                                                  Key cache hit for sstable 1 [ReadStage-1] | 2026-10-07 09:29:15.851005 | 172.18.0.2 |           2842 | 127.0.0.1
+              Sending READ_REQ message to /172.18.0.3:7000 message size 160 bytes [Messaging-EventLoop-3-2] | 2026-10-07 09:29:15.851006 | 172.18.0.2 |           2845 | 127.0.0.1
+              Sending READ_REQ message to /172.18.0.4:7000 message size 160 bytes [Messaging-EventLoop-3-1] | 2026-10-07 09:29:15.851007 | 172.18.0.2 |           3116 | 127.0.0.1
+                                  READ_REQ message received from /172.18.0.2:7000 [Messaging-EventLoop-3-1] | 2026-10-07 09:29:15.852000 | 172.18.0.4 |             45 | 127.0.0.1
+                                  READ_REQ message received from /172.18.0.2:7000 [Messaging-EventLoop-3-5] | 2026-10-07 09:29:15.852000 | 172.18.0.3 |             66 | 127.0.0.1
+                                                       Read 1 live rows and 0 tombstone cells [ReadStage-1] | 2026-10-07 09:29:15.852000 | 172.18.0.2 |           3435 | 127.0.0.1
+                                           Executing single-partition query on stations_velib [ReadStage-1] | 2026-10-07 09:29:15.853000 | 172.18.0.4 |            693 | 127.0.0.1
+                                           Executing single-partition query on stations_velib [ReadStage-1] | 2026-10-07 09:29:15.853000 | 172.18.0.3 |            653 | 127.0.0.1
+                                                                 Acquiring sstable references [ReadStage-1] | 2026-10-07 09:29:15.853001 | 172.18.0.4 |            986 | 127.0.0.1
+                                                                 Acquiring sstable references [ReadStage-1] | 2026-10-07 09:29:15.853001 | 172.18.0.3 |            879 | 127.0.0.1
+                                                                    Merging memtable contents [ReadStage-1] | 2026-10-07 09:29:15.853002 | 172.18.0.4 |           1186 | 127.0.0.1
+                                                                    Merging memtable contents [ReadStage-1] | 2026-10-07 09:29:15.853002 | 172.18.0.3 |           1055 | 127.0.0.1
+                                                                  Key cache hit for sstable 1 [ReadStage-1] | 2026-10-07 09:29:15.853003 | 172.18.0.3 |           1380 | 127.0.0.1
+                                                                  Key cache hit for sstable 1 [ReadStage-1] | 2026-10-07 09:29:15.854000 | 172.18.0.4 |           1478 | 127.0.0.1
+                                                       Read 1 live rows and 0 tombstone cells [ReadStage-1] | 2026-10-07 09:29:15.854000 | 172.18.0.3 |           2344 | 127.0.0.1
+                                                       Read 1 live rows and 0 tombstone cells [ReadStage-1] | 2026-10-07 09:29:15.854001 | 172.18.0.4 |           2302 | 127.0.0.1
+                                                       Enqueuing response to /172.18.0.2:7000 [ReadStage-1] | 2026-10-07 09:29:15.855000 | 172.18.0.4 |           2510 | 127.0.0.1
+                                                       Enqueuing response to /172.18.0.2:7000 [ReadStage-1] | 2026-10-07 09:29:15.855000 | 172.18.0.3 |           2596 | 127.0.0.1
+          Sending READ_RSP message to cass1/172.18.0.2:7000 message size 50 bytes [Messaging-EventLoop-3-1] | 2026-10-07 09:29:15.855001 | 172.18.0.4 |           2871 | 127.0.0.1
+          Sending READ_RSP message to cass1/172.18.0.2:7000 message size 50 bytes [Messaging-EventLoop-3-1] | 2026-10-07 09:29:15.855001 | 172.18.0.3 |           3038 | 127.0.0.1
+                                  READ_RSP message received from /172.18.0.4:7000 [Messaging-EventLoop-3-4] | 2026-10-07 09:29:15.856000 | 172.18.0.2 |           7543 | 127.0.0.1
+                                  READ_RSP message received from /172.18.0.3:7000 [Messaging-EventLoop-3-5] | 2026-10-07 09:29:15.856001 | 172.18.0.2 |           7514 | 127.0.0.1
+                                         Processing response from /172.18.0.3:7000 [RequestResponseStage-1] | 2026-10-07 09:29:15.856002 | 172.18.0.2 |           8260 | 127.0.0.1
+                                         Processing response from /172.18.0.4:7000 [RequestResponseStage-3] | 2026-10-07 09:29:15.862000 | 172.18.0.2 |          13784 | 127.0.0.1
+                                                                                           Request complete | 2026-10-07 09:29:15.862818 | 172.18.0.2 |          14818 | 127.0.0.1
+
+

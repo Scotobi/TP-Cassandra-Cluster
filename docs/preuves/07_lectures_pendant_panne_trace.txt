@@ -1,0 +1,41 @@
+﻿### CONSISTENCY ONE (TRACING ON)
+Consistency level set to ONE.
+Now Tracing is enabled
+
+ station_id | bornes_disponibles | capacite | derniere_mise_a_jour            | nom_station         | vatiques_disponibles
+------------+--------------------+----------+---------------------------------+---------------------+----------------------
+      15047 |                 51 |       52 | 2026-10-07 08:26:46.000000+0000 | Morillons - Dantzig |                    1
+
+(1 rows)
+
+Tracing session: 9c120a10-c231-11f1-a663-b39af1246204
+
+ activity                                                                                                   | timestamp                  | source     | source_elapsed | client
+------------------------------------------------------------------------------------------------------------+----------------------------+------------+----------------+-----------
+                                                                                         Execute CQL3 query | 2026-10-07 09:29:35.281000 | 172.18.0.2 |              0 | 127.0.0.1
+ Parsing SELECT * FROM velib_cluster.stations_velib WHERE station_id='15047'; [Native-Transport-Requests-2] | 2026-10-07 09:29:35.281001 | 172.18.0.2 |            483 | 127.0.0.1
+                                                          Preparing statement [Native-Transport-Requests-2] | 2026-10-07 09:29:35.282000 | 172.18.0.2 |            819 | 127.0.0.1
+                                           Executing single-partition query on stations_velib [ReadStage-1] | 2026-10-07 09:29:35.283000 | 172.18.0.2 |           2035 | 127.0.0.1
+                                                                 Acquiring sstable references [ReadStage-1] | 2026-10-07 09:29:35.283001 | 172.18.0.2 |           2224 | 127.0.0.1
+                                                                    Merging memtable contents [ReadStage-1] | 2026-10-07 09:29:35.283002 | 172.18.0.2 |           2470 | 127.0.0.1
+                                                                  Key cache hit for sstable 1 [ReadStage-1] | 2026-10-07 09:29:35.283003 | 172.18.0.2 |           2634 | 127.0.0.1
+                                                       Read 1 live rows and 0 tombstone cells [ReadStage-1] | 2026-10-07 09:29:35.284000 | 172.18.0.2 |           3254 | 127.0.0.1
+                                                                                           Request complete | 2026-10-07 09:29:35.285044 | 172.18.0.2 |           4044 | 127.0.0.1
+
+
+### CONSISTENCY QUORUM (TRACING ON)
+Consistency level set to QUORUM.
+Now Tracing is enabled
+
+ station_id | bornes_disponibles | capacite | derniere_mise_a_jour            | nom_station         | vatiques_disponibles
+------------+--------------------+----------+---------------------------------+---------------------+----------------------
+      15047 |                 51 |       52 | 2026-10-07 08:26:46.000000+0000 | Morillons - Dantzig |                    1
+
+(1 rows)
+<stdin>:1:Unable to fetch query trace: ('Unable to complete the operation against any hosts', {<Host: 127.0.0.1:9042 dc1>: Unavailable('Error from server: code=1000 [Unavailable exception] message="Cannot achieve consistency level QUORUM" info={\'consistency\': \'QUORUM\', \'required_replicas\': 2, \'alive_replicas\': 1}')})
+
+### CONSISTENCY ALL (TRACING ON)
+<stdin>:1:NoHostAvailable: ('Unable to complete the operation against any hosts', {<Host: 127.0.0.1:9042 dc1>: Unavailable('Error from server: code=1000 [Unavailable exception] message="Cannot achieve consistency level ALL" info={\'consistency\': \'ALL\', \'required_replicas\': 3, \'alive_replicas\': 2}')})
+Consistency level set to ALL.
+Now Tracing is enabled
+
